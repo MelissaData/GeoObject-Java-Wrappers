@@ -15,7 +15,7 @@ class FileConfig {
 
 ######################### Config ###########################
 
-$RELEASE_VERSION = '2023.07'
+$RELEASE_VERSION = '2023.08'
 
 $CurrentPath = $PSScriptRoot
 $CmdPath = "C:\Program Files\Microsoft Visual Studio\2022\Professional\VC\Auxiliary\Build\vcvarsall.bat" # Configure the path to vcvarsall.bat if needed
@@ -52,6 +52,14 @@ $Files = @(
     Compiler       = "C";
     Architecture   = "64BIT";
     Type           = "INTERFACE";
+  },
+  [FileConfig]@{
+    FileName       = "mdGeo_JavaCode.zip";
+    ReleaseVersion = $RELEASE_VERSION;
+    OS             = "ANY";
+    Compiler       = "ANY";
+    Architecture   = "ANY";
+    Type           = "DATA";
   }
 )
 
@@ -59,23 +67,45 @@ $Files = @(
 
 # This function will download all the files needed to compile the wrapper
 function DownloadFiles() {
-  Write-Host "MELISSA UPDATER IS DOWNLOADING DLL(s)..."
+  Write-Host "MELISSA UPDATER IS DOWNLOADING FILE(s)..."
   $FileProg = 0
   foreach ($File in $Files) {
-    Write-Progress -Activity "Downloading DLL(s)" -Status "$([math]::round($FileProg / $Files.Count * 100, 2))% Complete:"  -PercentComplete ($FileProg / $Files.Count * 100)
+    Write-Progress -Activity "Downloading FILE(s)" -Status "$([math]::round($FileProg / $Files.Count * 100, 2))% Complete:"  -PercentComplete ($FileProg / $Files.Count * 100)
 
     .\MelissaUpdater\MelissaUpdater.exe file --filename $File.FileName --release_version $File.ReleaseVersion --license $LICENSE --os $File.OS --compiler $File.Compiler --architecture $File.Architecture --type $File.Type --target_directory $CurrentPath
     
-		if (($?) -eq $False) {
-				Write-Host "`nCannot run Melissa Updater. Please check your license string!"
-				Exit
-		}
+    if (($?) -eq $False) {
+        Write-Host "`nCannot run Melissa Updater. Please check your license string!"
+        Exit
+    }
+  }
+
+  # Check for the zip folder and extract from the zip folder if it was downloaded
+  if ($File.FileName -eq "mdGeo_JavaCode.zip") {
+    if (!(Test-Path ("$CurrentPath\mdGeo_JavaCode.zip"))) {
+      Write-Host "mdGeo_JavaCode.zip not found." 
+      
+      Write-Host "`nAborting program, see above.  Press any button to exit."
+      $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+      exit
+    }
+    else {
+      if (!(Test-Path ("$CurrentPath/com"))) {
+      Expand-Archive -Path "$CurrentPath\mdGeo_JavaCode.zip" -DestinationPath $CurrentPath
+      }
+      else {
+        # Remove the com folder before extracting
+        Remove-Item -Path "$CurrentPath/com" -Recurse -Force
+
+        Expand-Archive -Path "$CurrentPath\mdGeo_JavaCode.zip" -DestinationPath $CurrentPath
+      }
+    }
   }
       
   Remove-Item *.hash
     
-	Write-Host "Melissa Updater finished downloading file(s)!"
-	$FileProg++
+  Write-Host "Melissa Updater finished downloading file(s)!"
+  $FileProg++
 }
 
 # This function will check if the files exist before trying to compile the wrapper
@@ -113,12 +143,12 @@ Write-Host "`n======================= WELCOME TO MELISSA GEOCODER OBJECT JAVA WR
 
 # Get license (either from parameters or user input)
 if ([string]::IsNullOrEmpty($license)) {
-	$License = Read-Host "Please enter your license string"
+  $License = Read-Host "Please enter your license string"
 }
 
 # Check for license from Environment Variables
 if ([string]::IsNullOrEmpty($License)) {
-	$License = $env:MD_LICENSE
+  $License = $env:MD_LICENSE
 }
 
 if ([string]::IsNullOrEmpty($License)) {
@@ -143,15 +173,30 @@ Write-Host "All file(s) have been downloaded/updated! "
 # Build the wrapper
 Write-Host "`n========================================== BUILD WRAPPER ======================================`n"
 
+# Compile DLL
 cmd.exe /C """$CmdPath"" x86_x64 && Powershell -File Build.ps1" > $null
 
+# Compile Jar
+javac com\melissadata\*.java > $null
+
+jar cvf mdGeo.jar com\melissadata\*.class > $null
+
 if (Test-Path ("mdGeoJavaWrapper.dll")) {
-	$filePath = Join-Path -Path (Split-Path -Parent $PSCommandPath) -ChildPath "mdGeoJavaWrapper.dll"
-	
-	Write-Host "`nmdGeoJavaWrapper.dll has been successfully generated at:`n$filePath"
+  $filePath = Join-Path -Path (Split-Path -Parent $PSCommandPath) -ChildPath "mdGeoJavaWrapper.dll"
+
+  Write-Host "`nmdGeoJavaWrapper.dll has been successfully generated at:`n$filePath"
 }
 else {
-	Write-Host "`nError: was not able to create mdGeoJavaWrapper.dll"
+  Write-Host "`nError: was not able to create mdGeoJavaWrapper.dll"
+}
+
+if (Test-Path ("mdGeo.jar")) {
+  $filePath = Join-Path -Path (Split-Path -Parent $PSCommandPath) -ChildPath "mdGeo.jar"
+
+  Write-Host "`nmdGeo.jar has been successfully generated at:`n$filePath"
+}
+else {
+  Write-Host "`nError: was not able to create mdGeo.jar"
 }
 
 Write-Host "`n============================ THANK YOU FOR USING MELISSA JAVA WRAPPER =========================`n"

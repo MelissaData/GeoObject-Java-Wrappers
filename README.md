@@ -1,4 +1,4 @@
-# Melissa - Geocoder Object Java Wrappers
+# Melissa - GeoCoder Object Java Wrappers
 
 ## Purpose
 
@@ -13,14 +13,14 @@ For further details, please visit: https://www.melissa.com/reference-guides/geoc
 ## Tested Environments
 - Windows 10 64-bit Java 19, Microsoft Visual C++ 19.34, Powershell 5.1
 - Ubuntu Linux 20.04.04 LTS 64-bit Java 20, gcc 9.4.0 
-- Melissa Geocoder Object for 2023-07
+- Melissa GeoCoder Object for 2023-08
 
 ## Getting Started
-These instructions will get you a copy of the wrappers needed to run the Java Geocoder Object on your local machine. 
+These instructions will get you a copy of the wrappers needed to run the Java GeoCoder Object on your local machine. 
 
 ### Download this project
 ```
-$ git clone https://github.com/MelissaData/GeoObject-Java-Wrappers.git
+$ git clone https://github.com/MelissaData/GeoObject-Java-Wrappers
 $ cd GeoObject-Java-Wrappers
 ```
 
@@ -154,8 +154,8 @@ $ ./BuildGeoJavaWrapper.sh --license "<your_license_string>"
 
 ----------------------------------------
 ## See also
-- [Melissa - Geocoder Object Windows Java](https://github.com/MelissaData/GeoObject-Java)
-- [Melissa - Geocoder Object Linux Java](https://github.com/MelissaData/GeoObject-Java-Linux)
+- [Melissa - GeoCoder Object Windows Java](https://github.com/MelissaData/GeoObject-Java)
+- [Melissa - GeoCoder Object Linux Java](https://github.com/MelissaData/GeoObject-Java-Linux)
     
 ## Contact Us
 For free technical support, please call us at 800-MELISSA ext. 4
