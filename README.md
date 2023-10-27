@@ -2,18 +2,18 @@
 
 ## Purpose
 
-This is the code for you to run Gecoder Object in Java.
+This is the code for you to run GeoCoder Object in Java.
     
 Please feel free to copy or embed this code to your own project. Happy coding!
 
-For latest Melissa Gecoder Object release notes, please visit: https://releasenotes.melissa.com/on-premise-api/gecoder-object/
+For latest Melissa GeoCoder Object release notes, please visit: https://releasenotes.melissa.com/on-premise-api/geocoder-object/
 
 For further details, please visit: https://www.melissa.com/reference-guides/geocoder-object
 
 ## Tested Environments
 - Windows 10 64-bit Java 19, Microsoft Visual C++ 19.34, Powershell 5.1
 - Ubuntu Linux 20.04.04 LTS 64-bit Java 20, gcc 9.4.0 
-- Melissa GeoCoder Object for 2023-09
+- Melissa GeoCoder Object for 2023-10
 
 ## Getting Started
 These instructions will get you a copy of the wrappers needed to run the Java GeoCoder Object on your local machine. 
