@@ -14,7 +14,7 @@ For further details, please visit: https://www.melissa.com/reference-guides/geoc
 - Windows 10 64-bit Java 19, Microsoft Visual C++ 19.34, Powershell 5.1
 - Ubuntu Linux 20.04.04 LTS 64-bit Java 20, gcc 9.4.0 
 - Melissa GeoCoder Object for 2024-Q3
-- Wrapper file(s) have not changed since 2023-Q4
+- Wrapper file(s) have not changed since 2024-Q3
 
 ## Getting Started
 These instructions will get you a copy of the wrappers needed to run the Java GeoCoder Object on your local machine. 
