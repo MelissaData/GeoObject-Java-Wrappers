@@ -13,7 +13,7 @@ For further details, please visit: https://www.melissa.com/reference-guides/geoc
 ## Tested Environments
 - Windows 10 64-bit Java 19, Microsoft Visual C++ 19.34, Powershell 5.1
 - Ubuntu Linux 20.04.04 LTS 64-bit Java 20, gcc 9.4.0 
-- Melissa GeoCoder Object for 2024-Q3
+- Melissa GeoCoder Object for 2024-Q4
 - Wrapper file(s) have not changed since 2024-Q3
 
 ## Getting Started
@@ -21,8 +21,8 @@ These instructions will get you a copy of the wrappers needed to run the Java Ge
 
 ### Download this project
 ```
-$ git clone https://github.com/MelissaData/GeoObject-Java-Wrappers
-$ cd GeoObject-Java-Wrappers
+git clone https://github.com/MelissaData/GeoObject-Java-Wrappers
+cd GeoObject-Java-Wrappers
 ```
 
 ### Copy wrappers to your project folder
@@ -80,8 +80,8 @@ Parameter(s)
 - -license (optional): a license string to run the powershell script
 
 ```
-$ .\BuildGeoJavaWrapper.ps1
-$ .\BuildGeoJavaWrapper.ps1 -license "<your_license_string>"
+.\BuildGeoJavaWrapper.ps1
+.\BuildGeoJavaWrapper.ps1 -license "<your_license_string>"
 ```
 
 ## Linux
@@ -149,8 +149,8 @@ Parameter(s)
 - --license (optional): a license string to run the bash script
 
 ```
-$ ./BuildGeoJavaWrapper.sh
-$ ./BuildGeoJavaWrapper.sh --license "<your_license_string>"
+./BuildGeoJavaWrapper.sh
+./BuildGeoJavaWrapper.sh --license "<your_license_string>"
 ```
 
 ----------------------------------------
