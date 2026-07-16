@@ -21,8 +21,8 @@ These instructions will get you a copy of the wrappers needed to run the Java Ge
 
 ### Download this project
 ```
-git clone https://git.melissadata.com/dtgroup/melissadataobjectexamples/java/melissageocoderobjectjavawrappers.git
-cd melissageocoderobjectjavawrappers
+git clone https://github.com/MelissaData/GeoObject-Java-Wrappers
+cd GeoObject-Java-Wrappers
 ```
 
 ### Copy wrappers to your project folder
